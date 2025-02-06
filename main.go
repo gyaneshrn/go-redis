@@ -36,5 +36,16 @@ func (s *Server) Start() error {
 }
 
 func (s *Server) acceptLoop() error {
+	for {
+		conn, err := s.ln.Accept()
+		if err != nil {
+			continue
+		}
+
+		go handleConn(conn)
+	}
+}
+
+func (s *Server) handleConn(conn net.Conn) {
 
 }
